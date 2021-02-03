@@ -6,6 +6,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GiphyController {
 	Services service = new Services();
+	
+	@Autowired
+	private UserRepository repo;
 
 	public GiphyController() {
 	}
@@ -60,9 +64,9 @@ public class GiphyController {
 
 				String gif_id = (String) urlObj.get("id");
 				String gif_url = (String) urlObj.get("url");
-
+				
 				Gif gif = new Gif(gif_id, gif_url);
-
+				this.repo.save(gif);
 				list.add(gif);
 			}
 			res.setData(list);

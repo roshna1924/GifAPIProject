@@ -1,5 +1,12 @@
 package com.giffy.api;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * This class contains all the information about Gif (Id, Url) that our api need
  * to return
@@ -7,14 +14,31 @@ package com.giffy.api;
  * @author Roshna Toke
  *
  */
+@Entity
+@Table(name = "gif")
 public class Gif {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+
+	@Column(name = "gif_id")
 	private final String gif_id;
+
+	@Column(name = "gif_url")
 	private final String url;
 
 	public Gif(String id, String url) {
 		this.gif_id = id;
 		this.url = url;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	/**

@@ -155,9 +155,7 @@ public class GifControllerTest {
 	 */
 	@Test
 	public void getGiphyController_success_0Records() throws Exception {
-		String emptyString = "{\r\n" + 
-				"    \"data\": []\r\n" + 
-				"}";
+		
 		PowerMockito.when(mockServices.getGiphy(any(String.class))).thenReturn(emptyString);
 		Result response = giphyController.getGiphyController("Valid");	
 		List<Gif> data = response.getData();
