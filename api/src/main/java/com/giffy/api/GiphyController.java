@@ -40,6 +40,7 @@ public class GiphyController {
 	 */
 	@GetMapping("/giphy")
 	public Result getGiphyController(String query) {
+		System.out.println(query);
 		if (query == null)
 			return new Result();
 
